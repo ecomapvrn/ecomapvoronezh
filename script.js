@@ -1,7 +1,7 @@
 // Инициализация карты
 const map = L.map('map').setView([51.6605, 39.2003], 13);
-L.tileLayer('https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}.png', {
-    attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OSM</a>'
+L.tileLayer('https://{s}.tile.openstreetmap.fr/osmfr/{z}/{x}/{y}.png', {
+    attribution: '&copy; OpenStreetMap France'
 }).addTo(map);
 map.zoomControl.setPosition('bottomright');
 
