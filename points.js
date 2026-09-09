@@ -1127,7 +1127,7 @@ const ecoPoints = [
         lng: 39.217990,
         type: "water",
         waterSubtype: "kolonka",
-        district: "Ленинский",
+        district: "Центральный",
         hours: "Круглосуточно",
         hoursType: "24h",
         description: "Водоразборная колонка",
