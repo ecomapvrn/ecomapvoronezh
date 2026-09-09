@@ -2044,7 +2044,7 @@ const ecoPoints = [
         lat: 51.642977,
         lng: 39.234234,
         type: "recycling",
-        district: "Железнодорожный",
+        district: "Левобережный",
         hours: "по телефону",
         hoursType: "regular",
         description: "Макулатура, полиэтилен, ПЭТ, стекло",
