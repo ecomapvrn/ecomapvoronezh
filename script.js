@@ -390,8 +390,16 @@ document.addEventListener('DOMContentLoaded', () => {
 
     const accountIcon = document.getElementById('accountIcon');
     if (accountIcon) accountIcon.addEventListener('click', () => alert('Личный кабинет в разработке'));
-    const feedbackBtn = document.getElementById('feedbackBtn');
-    if (feedbackBtn) feedbackBtn.addEventListener('click', () => alert('Форма обратной связи: напишите нам на levitskayadarina@gamil.com'));
+    
+    // Кнопка "Сообщить о проблеме" — открывается напрямую через ссылку в HTML
+    const feedbackBtn = document.querySelector('.footer-btn');
+    if (feedbackBtn) {
+        feedbackBtn.addEventListener('click', () => {
+            if (typeof ym === 'function') {
+                ym(110631537, 'reachGoal', 'feedback_open');
+        }
+    });
+}
 
     // Первоначальное обновление маркеров
     updateMarkers();
