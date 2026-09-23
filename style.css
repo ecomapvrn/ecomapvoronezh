@@ -4,6 +4,20 @@
     box-sizing: border-box;
 }
 
+:root {
+    /* Squircle-радиусы: чем крупнее элемент, тем плавнее скругление */
+    --radius-xs: 10px;
+    --radius-sm: 14px;
+    --radius-md: 20px;
+    --radius-lg: 28px;
+    --radius-pill: 999px;
+    --ease-squircle: cubic-bezier(0.22, 1, 0.36, 1);
+    --shadow-xs: 0 1px 3px rgba(15, 23, 42, 0.04);
+    --shadow-sm: 0 4px 14px rgba(15, 23, 42, 0.07);
+    --shadow-md: 0 10px 28px rgba(15, 23, 42, 0.08);
+    --shadow-lg: 0 20px 48px rgba(15, 23, 42, 0.14);
+}
+
 body {
     font-family: 'Inter', sans-serif;
     background: #F1F4F8;
@@ -21,7 +35,7 @@ body {
 .top-bar {
     background: white;
     padding: 12px 24px;
-    box-shadow: 0 2px 8px rgba(0,0,0,0.03);
+    box-shadow: var(--shadow-xs);
     border-bottom: 1px solid rgba(0,0,0,0.05);
     flex-shrink: 0;
     display: flex;
@@ -59,25 +73,33 @@ body {
     padding: 10px 18px;
     font-size: 15px;
     border: 1px solid #d0d7de;
-    border-radius: 48px;
+    border-radius: var(--radius-pill);
     outline: none;
     font-family: 'Inter', sans-serif;
+    transition: border-color 0.2s var(--ease-squircle), box-shadow 0.2s var(--ease-squircle);
+}
+
+#searchInput:focus {
+    border-color: #2c7a4d;
+    box-shadow: 0 0 0 4px rgba(44,122,77,0.1);
 }
 
 #searchBtn {
     background: #2c7a4d;
     border: none;
     padding: 0 20px;
-    border-radius: 48px;
+    border-radius: var(--radius-pill);
     color: white;
     font-weight: 500;
     cursor: pointer;
-    transition: 0.2s;
+    transition: background-color 0.25s var(--ease-squircle), transform 0.25s var(--ease-squircle), box-shadow 0.25s var(--ease-squircle);
     font-weight: bold;
 }
 
 #searchBtn:hover {
     background: #1f5a38;
+    transform: translateY(-1px);
+    box-shadow: var(--shadow-sm);
 }
 
 .account-icon {
@@ -96,11 +118,11 @@ body {
     background: #6f4e37;
     color: white;
     padding: 10px 20px;
-    border-radius: 48px;
+    border-radius: var(--radius-pill);
     font-weight: 500;
     font-size: 14px;
     text-decoration: none;
-    transition: 0.2s;
+    transition: background-color 0.25s var(--ease-squircle), transform 0.25s var(--ease-squircle);
     display: inline-flex;
     align-items: center;
     gap: 8px;
@@ -151,10 +173,15 @@ body {
     align-items: center;
     justify-content: center;
     cursor: pointer;
-    box-shadow: 0 2px 6px rgba(0,0,0,0.08);
+    box-shadow: var(--shadow-sm);
     color: #2c7a4d;
-    transition: 0.2s;
+    transition: transform 0.25s var(--ease-squircle), box-shadow 0.25s var(--ease-squircle);
     border: 1px solid #e2e8f0;
+}
+
+.rail-toggle:hover {
+    transform: scale(1.06);
+    box-shadow: var(--shadow-md);
 }
 
 .sidebar-panel {
@@ -162,7 +189,7 @@ body {
     overflow: hidden;
     background: white;
     border-right: 1px solid #e2e8f0;
-    transition: width 0.3s cubic-bezier(0.2, 0.9, 0.4, 1.1);
+    transition: width 0.35s var(--ease-squircle);
     flex-shrink: 0;
     display: flex;
     flex-direction: column;
@@ -207,11 +234,11 @@ body {
     width: 18px;
     height: 18px;
     border: 2px solid #cbd5e1;
-    border-radius: 6px;
+    border-radius: 7px;
     background: white;
     cursor: pointer;
     position: relative;
-    transition: all 0.15s ease;
+    transition: all 0.2s var(--ease-squircle);
     flex-shrink: 0;
 }
 
@@ -255,9 +282,16 @@ body {
 .district-select {
     width: 100%;
     padding: 8px;
-    border-radius: 12px;
+    border-radius: var(--radius-sm);
     border: 1px solid #cbd5e1;
     font-family: 'Inter', sans-serif;
+    transition: border-color 0.2s var(--ease-squircle), box-shadow 0.2s var(--ease-squircle);
+}
+
+.district-select:focus {
+    outline: none;
+    border-color: #2c7a4d;
+    box-shadow: 0 0 0 4px rgba(44,122,77,0.1);
 }
 
 /* Вертикальное расположение кнопок режима работы */
@@ -272,19 +306,20 @@ body {
     background: #e9edf2;
     border: none;
     padding: 10px 16px;
-    border-radius: 30px;
+    border-radius: var(--radius-pill);
     font-size: 13px;
     font-weight: 500;
     font-family: 'Inter', sans-serif;
     color: #475569;
     cursor: pointer;
-    transition: 0.2s;
+    transition: background-color 0.25s var(--ease-squircle), transform 0.25s var(--ease-squircle);
     text-align: center;
     width: 100%;
 }
 
 .worktime-buttons-vertical .worktime-btn:hover {
     background: #d1d9e2;
+    transform: translateY(-1px);
 }
 
 .worktime-buttons-vertical .worktime-btn.active {
@@ -299,10 +334,11 @@ body {
 /* Блок выбора времени (показывается при активной кнопке "all") */
 .time-picker {
     background: #f8fafc;
-    border-radius: 16px;
+    border-radius: var(--radius-md);
     padding: 16px;
     margin-top: 8px;
     display: none;
+    box-shadow: var(--shadow-xs);
 }
 
 .time-picker.visible {
@@ -326,11 +362,12 @@ body {
 
 .time-selectors select {
     padding: 6px 12px;
-    border-radius: 12px;
+    border-radius: var(--radius-sm);
     border: 1px solid #cbd5e1;
     font-family: 'Inter', sans-serif;
     font-size: 14px;
     background: white;
+    transition: border-color 0.2s var(--ease-squircle);
 }
 
 .time-selectors span {
@@ -342,25 +379,26 @@ body {
     background: #2c7a4d;
     border: none;
     padding: 6px 16px;
-    border-radius: 30px;
+    border-radius: var(--radius-pill);
     color: white;
     font-weight: 500;
     font-size: 13px;
     cursor: pointer;
-    transition: 0.2s;
+    transition: background-color 0.25s var(--ease-squircle), transform 0.25s var(--ease-squircle);
 }
 
 .apply-time-btn:hover {
     background: #1f5a38;
+    transform: translateY(-1px);
 }
 
 .map-container {
     flex: 1;
     position: relative;
     margin: 16px;
-    border-radius: 24px;
+    border-radius: var(--radius-lg);
     overflow: hidden;
-    box-shadow: 0 8px 20px rgba(0,0,0,0.05);
+    box-shadow: var(--shadow-md);
     background: #fff;
 }
 #map {
@@ -370,10 +408,10 @@ body {
 
 /* popup */
 .custom-popup .leaflet-popup-content-wrapper {
-    border-radius: 20px;
+    border-radius: var(--radius-md);
     padding: 0;
     background: white;
-    box-shadow: 0 12px 28px rgba(0,0,0,0.12);
+    box-shadow: var(--shadow-lg);
 }
 .popup-inner {
     padding: 16px 18px;
@@ -398,10 +436,15 @@ body {
     background: #2c7a4d;
     color: white;
     padding: 8px 16px;
-    border-radius: 40px;
+    border-radius: var(--radius-pill);
     text-decoration: none;
     font-size: 13px;
     margin-top: 10px;
+    transition: background-color 0.25s var(--ease-squircle), transform 0.25s var(--ease-squircle);
+}
+.route-btn:hover {
+    background: #1f5a38;
+    transform: translateY(-1px);
 }
 .leaflet-popup-close-button {
     padding: 15px 22px;
@@ -415,14 +458,14 @@ body {
     cursor: pointer;
     overflow: hidden;
     position: relative;
-    transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    transition: all 0.4s var(--ease-squircle);
     max-height: 56px;
     border-top: 1px solid rgba(255, 255, 255, 0.05);
 }
 
 .footer:hover {
     max-height: 400px;
-    transition: max-height 2s cubic-bezier(0.22, 1, 0.36, 1);
+    transition: max-height 2s var(--ease-squircle);
 }
 
 .footer-collapsed {
@@ -508,19 +551,20 @@ body {
     background: #2c7a4d;
     border: none;
     padding: 8px 16px;
-    border-radius: 40px;
+    border-radius: var(--radius-pill);
     color: white;
     font-weight: 500;
     font-size: 13px;
     cursor: pointer;
     margin-top: 8px;
-    transition: 0.2s;
+    transition: background-color 0.25s var(--ease-squircle), transform 0.25s var(--ease-squircle), box-shadow 0.25s var(--ease-squircle);
     text-decoration: none;
 }
 
 .footer-btn:hover {
     background: #3f9e64;
     transform: translateY(-1px);
+    box-shadow: var(--shadow-sm);
     color: white;
 }
 
@@ -622,7 +666,7 @@ body {
     }
     .map-container {
         margin: 12px;
-        border-radius: 16px;
+        border-radius: var(--radius-md);
     }
     .footer-collapsed {
         padding: 12px 16px;
@@ -733,7 +777,7 @@ body {
     }
     .map-container {
         margin: 8px;
-        border-radius: 12px;
+        border-radius: var(--radius-sm);
     }
     .footer-collapsed {
         padding: 8px 12px;
