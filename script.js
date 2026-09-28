@@ -11,6 +11,7 @@ let userLocationMarker = null;
 let geolocationWatchId = null;
 
 let selectedTimeMinutes = null;
+const isTouchDevice = window.matchMedia('(pointer: coarse)').matches;
 
 function createPopupContent(point) {
     const routeUrl = `https://yandex.ru/maps/?rtext=~${point.lat},${point.lng}&rtt=auto`;
@@ -210,14 +211,18 @@ function updateMarkers() {
         } else {
             const color = typeColors && typeColors[point.type] ? typeColors[point.type] : '#888888';
             marker = L.circleMarker([point.lat, point.lng], {
-                radius: 9,
+                radius: isTouchDevice ? 12 : 9,
                 fillColor: color,
                 color: "white",
                 weight: 2.5,
                 fillOpacity: 0.85
             }).addTo(map);
         }
-        marker.bindPopup(createPopupContent(point), { className: 'custom-popup' });
+        marker.bindPopup(createPopupContent(point), {
+            className: 'custom-popup',
+            maxWidth: Math.min(300, window.innerWidth - 60),
+            autoPanPadding: [16, 16]
+        });
         marker.pointData = point;
         markers.push(marker);
         count++;
@@ -248,26 +253,60 @@ function searchPoints() {
 }
 
 function startGeolocation() {
+    const geoStatus = document.getElementById('geolocationStatus');
+    const nearbyCb = document.getElementById('nearbyFilter');
+
+    if (!navigator.geolocation) {
+        if (geoStatus) geoStatus.innerHTML = '⚠️ Геолокация не поддерживается браузером';
+        if (nearbyCb) nearbyCb.checked = false;
+        return;
+    }
+
     if (geolocationWatchId !== null) {
         navigator.geolocation.clearWatch(geolocationWatchId);
     }
+
+    let firstFix = true;
+
     geolocationWatchId = navigator.geolocation.watchPosition(
         (position) => {
             const { latitude, longitude } = position.coords;
+            const moved = !userLocationCoords ||
+                getDistance(userLocationCoords.lat, userLocationCoords.lng, latitude, longitude) > 0.03;
+
             userLocationCoords = { lat: latitude, lng: longitude };
-            if (userLocationMarker) map.removeLayer(userLocationMarker);
-            userLocationMarker = L.marker([latitude, longitude], {
-                icon: L.divIcon({ html: '<i class="fas fa-location-dot" style="font-size:24px; color:#2c7a4d; text-shadow:0 0 3px white;"></i>', iconSize: [24,24] })
-            }).addTo(map).bindPopup('Вы здесь').openPopup();
-            const geoStatus = document.getElementById('geolocationStatus');
+
+            if (userLocationMarker) {
+                userLocationMarker.setLatLng([latitude, longitude]);
+            } else {
+                userLocationMarker = L.marker([latitude, longitude], {
+                    icon: L.divIcon({
+                        html: '<i class="fas fa-location-dot" style="font-size:24px; color:#2c7a4d; text-shadow:0 0 3px white;"></i>',
+                        iconSize: [24, 24]
+                    })
+                }).addTo(map).bindPopup('Вы здесь');
+            }
+
+            if (firstFix) {
+                firstFix = false;
+                map.setView([latitude, longitude], Math.max(map.getZoom(), 14));
+                userLocationMarker.openPopup();
+            }
+
             if (geoStatus) geoStatus.innerHTML = '✓ Местоположение определено';
-            updateMarkers();
+            if (moved) updateMarkers();
         },
         (error) => {
             console.error(error);
-            const geoStatus = document.getElementById('geolocationStatus');
-            if (geoStatus) geoStatus.innerHTML = '⚠️ Не удалось определить местоположение. Разрешите доступ.';
+
+            if (geolocationWatchId !== null) {
+                navigator.geolocation.clearWatch(geolocationWatchId);
+                geolocationWatchId = null;
+            }
+
             userLocationCoords = null;
+            if (nearbyCb) nearbyCb.checked = false;
+            if (geoStatus) geoStatus.innerHTML = '⚠️ Не удалось определить местоположение. Разрешите доступ.';
             updateMarkers();
         },
         { enableHighAccuracy: true, maximumAge: 10000, timeout: 10000 }
@@ -279,8 +318,11 @@ function stopGeolocation() {
         navigator.geolocation.clearWatch(geolocationWatchId);
         geolocationWatchId = null;
     }
+
     if (userLocationMarker) map.removeLayer(userLocationMarker);
+    userLocationMarker = null;
     userLocationCoords = null;
+
     const geoStatus = document.getElementById('geolocationStatus');
     if (geoStatus) geoStatus.innerHTML = '';
     updateMarkers();
@@ -356,8 +398,9 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
-    document.querySelectorAll('.filter-cb').forEach(cb => cb.addEventListener('change', () => updateMarkers()));
-    document.querySelectorAll('.water-sub, .recycling-sub').forEach(cb => cb.addEventListener('change', () => updateMarkers()));
+    document.querySelectorAll('.filter-cb:not(#waterMain):not(#recyclingMain)').forEach(cb => {
+        cb.addEventListener('change', () => updateMarkers());
+    });
     const districtFilter = document.getElementById('districtFilter');
     if (districtFilter) districtFilter.addEventListener('change', () => updateMarkers());
 
@@ -378,21 +421,65 @@ document.addEventListener('DOMContentLoaded', () => {
     const sidebarPanel = document.getElementById('sidebarPanel');
     const closePanelBtn = document.getElementById('closePanelBtn');
     const toggleIcon = document.getElementById('toggleIcon');
-    if (railToggle && sidebarPanel && toggleIcon) {
-        function openPanel() { sidebarPanel.classList.add('open'); toggleIcon.classList.remove('fa-chevron-right'); toggleIcon.classList.add('fa-chevron-left'); }
-        function closePanel() { sidebarPanel.classList.remove('open'); toggleIcon.classList.remove('fa-chevron-left'); toggleIcon.classList.add('fa-chevron-right'); }
-        railToggle.addEventListener('click', () => { if(sidebarPanel.classList.contains('open')) closePanel(); else openPanel(); });
+    const mainLayout = document.querySelector('.main-layout');
+    const mobileMQ = window.matchMedia('(max-width: 768px)');
+
+    function setPanel(open) {
+        if (!sidebarPanel) return;
+
+        sidebarPanel.classList.toggle('open', open);
+        if (mainLayout) mainLayout.classList.toggle('panel-open', open);
+
+        if (toggleIcon) {
+            toggleIcon.classList.toggle('fa-chevron-left', open);
+            toggleIcon.classList.toggle('fa-chevron-right', !open);
+        }
     }
-    if (closePanelBtn) closePanelBtn.addEventListener('click', () => {
-        if (sidebarPanel) sidebarPanel.classList.remove('open');
-        if (toggleIcon) { toggleIcon.classList.remove('fa-chevron-left'); toggleIcon.classList.add('fa-chevron-right'); }
+
+    if (railToggle && sidebarPanel) {
+        railToggle.addEventListener('click', () => {
+            setPanel(!sidebarPanel.classList.contains('open'));
+        });
+    }
+
+    if (closePanelBtn) {
+        closePanelBtn.addEventListener('click', () => setPanel(false));
+    }
+
+    map.on('click', () => {
+        if (mobileMQ.matches) setPanel(false);
     });
+
+    // Footer: на компьютере открывается наведением, на телефоне — тапом.
+    const footer = document.getElementById('footer');
+    const footerCollapsed = footer ? footer.querySelector('.footer-collapsed') : null;
+    const footerTapMode = window.matchMedia('(hover: none), (pointer: coarse), (max-width: 768px)');
+
+    if (footer && footerCollapsed) {
+        footerCollapsed.addEventListener('click', (event) => {
+            if (!footerTapMode.matches) return;
+            event.stopPropagation();
+            footer.classList.toggle('is-open');
+        });
+
+        document.addEventListener('click', (event) => {
+            if (!footer.contains(event.target)) {
+                footer.classList.remove('is-open');
+            }
+        });
+
+        document.addEventListener('keydown', (event) => {
+            if (event.key === 'Escape') {
+                footer.classList.remove('is-open');
+            }
+        });
+    }
 
     const accountIcon = document.getElementById('accountIcon');
     if (accountIcon) accountIcon.addEventListener('click', () => alert('Личный кабинет в разработке'));
     
     // Кнопка "Сообщить о проблеме" — открывается напрямую через ссылку в HTML
-    const feedbackBtn = document.querySelector('.footer-btn');
+    const feedbackBtn = document.querySelector('.footer-btn[href^="https://forms.gle/"]');
     if (feedbackBtn) {
         feedbackBtn.addEventListener('click', () => {
             if (typeof ym === 'function') {
@@ -410,4 +497,15 @@ window.addEventListener('resize', function() {
     if (map) {
         map.invalidateSize();
     }
+});
+
+// Карта пересчитывает размер при изменении контейнера и ориентации устройства.
+if ('ResizeObserver' in window) {
+    const mapElement = document.getElementById('map');
+    if (mapElement) {
+        new ResizeObserver(() => map.invalidateSize()).observe(mapElement);
+    }
+}
+window.addEventListener('orientationchange', () => {
+    setTimeout(() => map.invalidateSize(), 300);
 });
