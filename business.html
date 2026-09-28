@@ -1,0 +1,900 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Партнёрство с Эко-картой Воронежа для бизнеса">
+    <title>Для бизнеса — Эко-карта Воронежа</title>
+
+    <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link rel="stylesheet" href="./style.css">
+
+    <link rel="icon" type="image/png" href="favicon-96x96.png" sizes="96x96" />
+    <link rel="icon" type="image/svg+xml" href="favicon.svg" />
+    <link rel="shortcut icon" href="favicon.ico" />
+    <link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png" />
+    <link rel="manifest" href="site.webmanifest" />
+
+    <style>
+        /* =========================================================
+           BUSINESS.HTML — САМОСТОЯТЕЛЬНАЯ СТИЛИЗАЦИЯ
+           Страница не зависит от того, применился ли внешний style.css.
+           ========================================================= */
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body.business-body {
+            margin: 0;
+            min-height: 100vh;
+            overflow-x: hidden;
+            overflow-y: auto;
+            font-family: 'Inter', sans-serif;
+            background: #F1F4F8;
+            color: #1e2a3a;
+        }
+
+        .business-page {
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+
+        /* =========================
+           ШАПКА
+           ========================= */
+
+        .business-header {
+            width: 100%;
+            flex-shrink: 0;
+            background: #FFFFFF;
+            border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+            box-shadow: 0 1px 3px rgba(15, 23, 42, 0.04);
+        }
+
+        .business-header-inner {
+            width: min(1200px, calc(100% - 48px));
+            min-height: 74px;
+            margin: 0 auto;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 20px;
+        }
+
+        .business-brand {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            min-width: 0;
+            text-decoration: none;
+        }
+
+        .business-brand img {
+            display: block;
+            width: auto;
+            object-fit: contain;
+        }
+
+        .business-brand img:first-child {
+            height: 50px;
+        }
+
+        .business-brand img:last-child {
+            height: 50px;
+        }
+
+        .business-back {
+            flex-shrink: 0;
+            display: inline-flex;
+            align-items: center;
+            gap: 7px;
+            color: #2c7a4d;
+            text-decoration: none;
+            font-size: 14px;
+            font-weight: 600;
+            transition: color 0.2s ease, transform 0.2s ease;
+        }
+
+        .business-back:hover {
+            color: #1f5a38;
+            transform: translateX(-2px);
+        }
+
+        /* =========================
+           ОСНОВНОЙ КОНТЕНТ
+           ========================= */
+
+        .business-main {
+            width: min(1100px, calc(100% - 32px));
+            margin: 0 auto;
+            padding: 40px 0 48px;
+            flex: 1;
+        }
+
+        .business-hero,
+        .business-section {
+            background: #FFFFFF;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.05);
+        }
+
+        .business-hero {
+            padding: 48px;
+            border-radius: 24px;
+            text-align: center;
+        }
+
+        .business-kicker {
+            margin-bottom: 10px;
+            color: #2c7a4d;
+            font-size: 14px;
+            line-height: 1.2;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.08em;
+        }
+
+        .business-hero h1 {
+            margin: 0 0 16px;
+            color: #1e2a3a;
+            font-size: clamp(30px, 5vw, 46px);
+            line-height: 1.1;
+            font-weight: 700;
+            letter-spacing: -0.03em;
+        }
+
+        .business-hero p {
+            max-width: 720px;
+            margin: 0 auto;
+            color: #475569;
+            font-size: 17px;
+            line-height: 1.6;
+        }
+
+        .business-cta {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            margin-top: 26px;
+            padding: 12px 22px;
+            border-radius: 999px;
+            background: #2c7a4d;
+            color: #FFFFFF;
+            font-size: 14px;
+            font-weight: 600;
+            text-decoration: none;
+            transition: background-color 0.25s ease, transform 0.25s ease, box-shadow 0.25s ease;
+        }
+
+        .business-cta:hover {
+            background: #1f5a38;
+            color: #FFFFFF;
+            transform: translateY(-1px);
+            box-shadow: 0 4px 14px rgba(15, 23, 42, 0.07);
+        }
+
+        .business-section {
+            margin-top: 24px;
+            padding: 32px;
+            border-radius: 20px;
+        }
+
+        .business-section h2 {
+            margin: 0 0 20px;
+            color: #1e2a3a;
+            font-size: 24px;
+            line-height: 1.25;
+            font-weight: 700;
+        }
+
+        /* =========================
+           КАРТОЧКИ
+           ========================= */
+
+        .business-grid {
+            display: grid;
+            grid-template-columns: repeat(4, minmax(0, 1fr));
+            gap: 16px;
+        }
+
+        .business-card {
+            background: #f8fafc;
+            border: 1px solid #edf2f7;
+            border-radius: 16px;
+            padding: 20px;
+            transition: transform 0.25s ease, box-shadow 0.25s ease;
+        }
+
+        .business-card:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 14px rgba(15, 23, 42, 0.07);
+        }
+
+        .business-card i {
+            display: block;
+            margin-bottom: 12px;
+            color: #2c7a4d;
+            font-size: 22px;
+        }
+
+        .business-card h3 {
+            margin: 0 0 8px;
+            color: #1e2a3a;
+            font-size: 16px;
+            line-height: 1.3;
+        }
+
+        .business-card p {
+            margin: 0;
+            color: #475569;
+            font-size: 14px;
+            line-height: 1.5;
+        }
+
+        /* =========================
+           ШАГИ
+           ========================= */
+
+        .business-steps {
+            display: grid;
+            grid-template-columns: repeat(4, minmax(0, 1fr));
+            gap: 16px;
+        }
+
+        .business-step {
+            position: relative;
+            padding: 20px;
+            background: #FFFFFF;
+            border: 1px solid #e2e8f0;
+            border-radius: 16px;
+            transition: transform 0.25s ease, box-shadow 0.25s ease;
+        }
+
+        .business-step:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 14px rgba(15, 23, 42, 0.07);
+        }
+
+        .business-step-number {
+            margin-bottom: 10px;
+            color: #2c7a4d;
+            font-size: 13px;
+            line-height: 1;
+            font-weight: 700;
+        }
+
+        .business-step h3 {
+            margin: 0 0 6px;
+            color: #1e2a3a;
+            font-size: 16px;
+            line-height: 1.3;
+        }
+
+        .business-step p {
+            margin: 0;
+            color: #64748b;
+            font-size: 13px;
+            line-height: 1.5;
+        }
+
+        .business-note {
+            margin: 16px 0 0;
+            color: #64748b;
+            font-size: 13px;
+            line-height: 1.6;
+        }
+
+        /* =========================
+           КОНТАКТЫ
+           ========================= */
+
+        .business-contact {
+            text-align: center;
+        }
+
+        .business-contact p {
+            margin: 0;
+            color: #475569;
+            line-height: 1.6;
+        }
+
+        .business-contact-links {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-top: 20px;
+        }
+
+        .business-contact-link {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 7px;
+            padding: 9px 14px;
+            border-radius: 30px;
+            border: 1px solid #e2e8f0;
+            background: #f8fafc;
+            color: #334155;
+            text-decoration: none;
+            font-size: 13px;
+            font-weight: 600;
+            transition: background-color 0.2s ease, border-color 0.2s ease, transform 0.2s ease;
+        }
+
+        .business-contact-link:hover {
+            background: #eef4f0;
+            border-color: #cbded3;
+            color: #334155;
+            transform: translateY(-1px);
+        }
+
+        .business-email {
+            display: inline-block;
+            margin-top: 14px;
+            color: #2c7a4d;
+            font-weight: 700;
+            text-decoration: none;
+        }
+
+        .business-email:hover {
+            color: #1f5a38;
+        }
+
+        /* =========================================================
+           FOOTER — ТОЛЬКО ДЛЯ BUSINESS.HTML
+           ========================================================= */
+
+        .business-footer {
+            width: 100%;
+            height: 56px;
+            max-height: 56px;
+            margin-top: auto;
+            overflow: hidden;
+            position: relative;
+            z-index: 100;
+            flex-shrink: 0;
+            background: #1e2a32;
+            color: #cddfe7;
+            border-top: 1px solid rgba(255, 255, 255, 0.05);
+            cursor: pointer;
+            transition:
+                height 0.45s cubic-bezier(0.22, 1, 0.36, 1),
+                max-height 0.45s cubic-bezier(0.22, 1, 0.36, 1),
+                box-shadow 0.45s ease;
+        }
+
+        .business-footer.is-open,
+        .business-footer:hover,
+        .business-footer:focus-within {
+            height: 400px;
+            max-height: 400px;
+            box-shadow: 0 -8px 30px rgba(0, 0, 0, 0.08);
+        }
+
+        .business-footer .footer-collapsed {
+            width: min(1200px, calc(100% - 64px));
+            height: 56px;
+            margin: 0 auto;
+            padding: 0;
+            display: grid;
+            grid-template-columns: repeat(4, minmax(0, 1fr));
+            align-items: center;
+            justify-content: initial;
+            font-weight: 600;
+            transition: opacity 0.2s ease;
+        }
+
+        .business-footer .footer-col-preview {
+            min-width: 0;
+            text-align: left;
+            padding-left: 0;
+            color: #cddfe7;
+            font-size: 14px;
+            line-height: 1.2;
+            white-space: nowrap;
+        }
+
+        .business-footer.is-open .footer-collapsed,
+        .business-footer:hover .footer-collapsed,
+        .business-footer:focus-within .footer-collapsed {
+            opacity: 0;
+            pointer-events: none;
+        }
+
+        .business-footer .footer-expanded {
+            width: 100%;
+            height: calc(400px - 56px);
+            padding: 24px 0 16px;
+            margin: 0;
+            box-sizing: border-box;
+            opacity: 0;
+            visibility: hidden;
+            pointer-events: none;
+            transform: translateY(10px);
+            transition:
+                opacity 0.25s ease,
+                transform 0.35s cubic-bezier(0.22, 1, 0.36, 1),
+                visibility 0s linear 0.3s;
+        }
+
+        .business-footer.is-open .footer-expanded,
+        .business-footer:hover .footer-expanded,
+        .business-footer:focus-within .footer-expanded {
+            opacity: 1;
+            visibility: visible;
+            pointer-events: auto;
+            transform: translateY(0);
+            transition:
+                opacity 0.3s ease 0.08s,
+                transform 0.35s cubic-bezier(0.22, 1, 0.36, 1) 0.08s,
+                visibility 0s linear 0s;
+        }
+
+        .business-footer .footer-inner {
+            width: min(1200px, calc(100% - 64px));
+            max-width: none;
+            height: 100%;
+            margin: 0 auto;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .business-footer .footer-columns {
+            width: 100%;
+            display: grid;
+            grid-template-columns: repeat(4, minmax(0, 1fr));
+            gap: 0;
+            align-items: start;
+        }
+
+        .business-footer .footer-col {
+            min-width: 0;
+            flex: none;
+            padding: 0 16px;
+        }
+
+        .business-footer .footer-col:first-child {
+            padding-left: 0;
+        }
+
+        .business-footer .footer-col:last-child {
+            padding-right: 0;
+        }
+
+        .business-footer .footer-col h4 {
+            margin: 0 0 14px;
+            color: #FFFFFF;
+            font-size: 18px;
+            line-height: 1.25;
+            font-weight: 700;
+        }
+
+        .business-footer .footer-col p {
+            margin: 0 0 10px;
+            display: flex;
+            align-items: flex-start;
+            gap: 8px;
+            color: #cddfe7;
+            font-size: 13px;
+            line-height: 1.4;
+        }
+
+        .business-footer .foot-social {
+            color: #cddfe7;
+            text-decoration: none;
+        }
+
+        .business-footer .foot-social:hover {
+            color: #FFFFFF;
+        }
+
+        .business-footer .footer-btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            margin-top: 2px;
+            padding: 8px 16px;
+            border: 0;
+            border-radius: 999px;
+            background: #2c7a4d;
+            color: #FFFFFF;
+            font-size: 13px;
+            font-weight: 500;
+            text-decoration: none;
+            transition: background-color 0.25s ease, transform 0.25s ease, box-shadow 0.25s ease;
+        }
+
+        .business-footer .footer-btn:hover {
+            background: #3f9e64;
+            color: #FFFFFF;
+            transform: translateY(-1px);
+            box-shadow: 0 4px 14px rgba(15, 23, 42, 0.07);
+        }
+
+        .business-footer .footer-bottom {
+            margin-top: auto;
+            padding-top: 14px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            text-align: center;
+            color: #94a3b8;
+            font-size: 12px;
+            line-height: 1.3;
+        }
+
+        /* =========================
+           АДАПТИВНОСТЬ
+           ========================= */
+
+        @media (max-width: 900px) {
+            .business-grid,
+            .business-steps {
+                grid-template-columns: repeat(2, minmax(0, 1fr));
+            }
+
+            .business-hero {
+                padding: 36px 28px;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .business-header-inner {
+                width: min(100%, calc(100% - 24px));
+                min-height: 60px;
+            }
+
+            .business-brand img:first-child,
+            .business-brand img:last-child {
+                height: 38px;
+            }
+
+            .business-back {
+                font-size: 12px;
+            }
+
+            .business-footer.is-open,
+            .business-footer:hover,
+            .business-footer:focus-within {
+                height: 460px;
+                max-height: 460px;
+            }
+
+            .business-footer .footer-collapsed {
+                width: 100%;
+                padding: 0 8px;
+            }
+
+            .business-footer .footer-col-preview {
+                font-size: 12px;
+            }
+
+            .business-footer .footer-expanded {
+                height: calc(460px - 56px);
+            }
+
+            .business-footer .footer-inner {
+                width: calc(100% - 32px);
+            }
+
+            .business-footer .footer-columns {
+                grid-template-columns: repeat(2, minmax(0, 1fr));
+                gap: 18px 0;
+            }
+        }
+
+        @media (max-width: 600px) {
+            .business-main {
+                width: calc(100% - 16px);
+                padding: 24px 0 40px;
+            }
+
+            .business-hero,
+            .business-section {
+                padding: 24px 18px;
+                border-radius: 16px;
+            }
+
+            .business-grid,
+            .business-steps {
+                grid-template-columns: 1fr;
+            }
+
+            .business-hero p {
+                font-size: 15px;
+            }
+
+            .business-contact-links {
+                flex-direction: column;
+                align-items: stretch;
+            }
+
+            .business-contact-link {
+                justify-content: center;
+            }
+
+            .business-footer.is-open,
+            .business-footer:hover,
+            .business-footer:focus-within {
+                height: 560px;
+                max-height: 560px;
+            }
+
+            .business-footer .footer-expanded {
+                height: calc(560px - 56px);
+            }
+
+            .business-footer .footer-columns {
+                grid-template-columns: 1fr;
+                gap: 14px;
+            }
+
+            .business-footer .footer-col {
+                padding: 0;
+            }
+
+            .business-footer .footer-col h4 {
+                font-size: 15px;
+                margin-bottom: 7px;
+            }
+
+            .business-footer .footer-col p {
+                font-size: 12px;
+                margin-bottom: 6px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .business-header-inner {
+                width: calc(100% - 16px);
+            }
+
+            .business-brand {
+                gap: 6px;
+            }
+
+            .business-brand img:first-child,
+            .business-brand img:last-child {
+                height: 30px;
+            }
+
+            .business-back {
+                font-size: 11px;
+            }
+
+            .business-footer .footer-collapsed {
+                grid-template-columns: repeat(4, minmax(0, 1fr));
+                padding: 0 3px;
+            }
+
+            .business-footer .footer-col-preview {
+                font-size: 10px;
+            }
+        }
+    </style>
+</head>
+
+<body class="business-body">
+    <div class="business-page">
+        <header class="business-header">
+            <div class="business-header-inner">
+                <a href="index.html" class="business-brand" aria-label="Вернуться на Эко-карту">
+                    <img src="logo-eco-map.png" alt="Eco-Map VRN">
+                    <img src="logo-team.png" alt="Element X">
+                </a>
+
+                <a href="index.html" class="business-back">
+                    <i class="fas fa-arrow-left"></i>
+                    <span>Вернуться к карте</span>
+                </a>
+            </div>
+        </header>
+
+        <main class="business-main">
+            <section class="business-hero">
+                <div class="business-kicker">Эко-карта Воронежа</div>
+                <h1>Партнёрство с Эко-картой</h1>
+                <p>Помогите жителям Воронежа находить вашу организацию вместе с полезной экологической инфраструктурой города.</p>
+
+                <a class="business-cta" href="#business-contact">
+                    <i class="fas fa-handshake"></i>
+                    <span>Стать партнёром</span>
+                </a>
+            </section>
+
+            <section class="business-section">
+                <h2>Кому подходит партнёрство</h2>
+
+                <div class="business-grid">
+                    <article class="business-card">
+                        <i class="fas fa-recycle"></i>
+                        <h3>Пункты приёма вторсырья</h3>
+                        <p>Организации, принимающие батарейки, бумагу, пластик, стекло, металл, электронику и другие виды вторсырья.</p>
+                    </article>
+
+                    <article class="business-card">
+                        <i class="fas fa-store"></i>
+                        <h3>Эко-магазины</h3>
+                        <p>Бизнесы, предлагающие товары и решения для более экологичного образа жизни.</p>
+                    </article>
+
+                    <article class="business-card">
+                        <i class="fas fa-shirt"></i>
+                        <h3>Секонд-хенды</h3>
+                        <p>Места, связанные с повторным использованием одежды и вещей.</p>
+                    </article>
+
+                    <article class="business-card">
+                        <i class="fas fa-mug-hot"></i>
+                        <h3>Кафе</h3>
+                        <p>Кафе и другие организации, заинтересованные в экологичной аудитории и клиентах.</p>
+                    </article>
+                </div>
+            </section>
+
+            <section class="business-section">
+                <h2>Что даёт размещение на Эко-карте</h2>
+
+                <div class="business-grid">
+                    <article class="business-card">
+                        <i class="fas fa-map-marker-alt"></i>
+                        <h3>Присутствие на карте</h3>
+                        <p>Организация становится доступной пользователям Эко-карты среди экологической инфраструктуры города.</p>
+                    </article>
+
+                    <article class="business-card">
+                        <i class="fas fa-users"></i>
+                        <h3>Доступ к аудитории</h3>
+                        <p>Проект ориентирован на жителей Воронежа, эко-активистов, волонтёров, студентов и школьников.</p>
+                    </article>
+
+                    <article class="business-card">
+                        <i class="fas fa-leaf"></i>
+                        <h3>Экологический контекст</h3>
+                        <p>Бизнес становится частью сервиса, который делает экологичный образ жизни проще и доступнее.</p>
+                    </article>
+
+                    <article class="business-card">
+                        <i class="fas fa-location-dot"></i>
+                        <h3>Информация об объекте</h3>
+                        <p>Пользователь может находить экологические объекты через карту, поиск и фильтры.</p>
+                    </article>
+                </div>
+
+                <p class="business-note">Конкретные условия, формат и стоимость партнёрского размещения согласовываются с командой проекта отдельно.</p>
+            </section>
+
+            <section class="business-section">
+                <h2>Как начать сотрудничество</h2>
+
+                <div class="business-steps">
+                    <article class="business-step">
+                        <div class="business-step-number">01</div>
+                        <h3>Свяжитесь с нами</h3>
+                        <p>Выберите удобный способ связи с командой проекта.</p>
+                    </article>
+
+                    <article class="business-step">
+                        <div class="business-step-number">02</div>
+                        <h3>Расскажите об организации</h3>
+                        <p>Укажите название, направление деятельности и контакт для связи.</p>
+                    </article>
+
+                    <article class="business-step">
+                        <div class="business-step-number">03</div>
+                        <h3>Обсудим размещение</h3>
+                        <p>Согласуем формат сотрудничества и необходимые данные.</p>
+                    </article>
+
+                    <article class="business-step">
+                        <div class="business-step-number">04</div>
+                        <h3>Размещение на Эко-карте</h3>
+                        <p>После согласования организация может быть добавлена в экосистему проекта.</p>
+                    </article>
+                </div>
+            </section>
+
+            <section class="business-section business-contact" id="business-contact">
+                <h2>Хотите стать партнёром?</h2>
+                <p>Выберите удобный способ связи с командой Эко-карты Воронежа.</p>
+
+                <div class="business-contact-links">
+                    <a class="business-contact-link" href="https://t.me/ecomapvrn" target="_blank" rel="noopener noreferrer">
+                        <i class="fab fa-telegram-plane"></i>
+                        <span>Telegram</span>
+                    </a>
+
+                    <a class="business-contact-link" href="https://vk.ru/club240008637" target="_blank" rel="noopener noreferrer">
+                        <i class="fab fa-vk"></i>
+                        <span>VK</span>
+                    </a>
+
+                    <a class="business-contact-link" href="https://max.ru/join/UCx8TmDJUwpx-iC_lzVOShKo-WEkQYhOubUBl6vOK78" target="_blank" rel="noopener noreferrer">
+                        <i class="fas fa-comment-dots"></i>
+                        <span>MAX</span>
+                    </a>
+
+                    <a class="business-contact-link" href="mailto:ecomapvrn@mail.ru">
+                        <i class="fas fa-envelope"></i>
+                        <span>Email</span>
+                    </a>
+                </div>
+
+                <a class="business-email" href="mailto:ecomapvrn@mail.ru">ecomapvrn@mail.ru</a>
+            </section>
+        </main>
+
+        <footer class="business-footer">
+            <div class="footer-collapsed">
+                <div class="footer-col-preview">Эко-карта Воронежа</div>
+                <div class="footer-col-preview">Помочь проекту</div>
+                <div class="footer-col-preview">Для бизнеса</div>
+                <div class="footer-col-preview">Контакты</div>
+            </div>
+
+            <div class="footer-expanded">
+                <div class="footer-inner">
+                    <div class="footer-columns">
+                        <div class="footer-col">
+                            <h4>Эко-карта Воронежа</h4>
+                            <p>Эко-карта Воронежа — городской цифровой сервис команды Элемент-Х. Мы собираем и структурируем экологическую инфраструктуру города: пункты приёма вторсырья, точки питьевой воды, секонд-хенды, эко-магазины и другие полезные места. Проект развивается вместе с жителями и партнёрами Воронежа и постоянно расширяет карту и свои возможности.</p>
+                        </div>
+
+                        <div class="footer-col">
+                            <h4>Помочь проекту</h4>
+                            <p>Нашли ошибку на карте, знаете новую точку или заметили проблему? Сообщите нам — мы обновим карту.</p>
+                            <a href="https://forms.gle/wyjzyTzU7bwVed89A" target="_blank" rel="noopener noreferrer" class="footer-btn">Сообщить о проблеме или точке</a>
+                        </div>
+
+                        <div class="footer-col">
+                            <h4>Для бизнеса</h4>
+                            <p>Разместите свою организацию на Эко-карте и расскажите о ней жителям Воронежа.</p>
+                            <a href="business.html" class="footer-btn">Подробнее</a>
+                        </div>
+
+                        <div class="footer-col">
+                            <h4>Контакты</h4>
+                            <p>ecomapvrn@mail.ru</p>
+                            <p><a class="foot-social" href="https://t.me/ecomapvrn">Telegram</a></p>
+                            <p><a class="foot-social" href="https://max.ru/join/UCx8TmDJUwpx-iC_lzVOShKo-WEkQYhOubUBl6vOK78">MAX</a></p>
+                            <p><a class="foot-social" href="https://vk.ru/club240008637">VK</a></p>
+                        </div>
+                    </div>
+
+                    <div class="footer-bottom">
+                        <span>© 2025 · Данные обновляются при участии жителей</span>
+                    </div>
+                </div>
+            </div>
+        </footer>
+    </div>
+    <script>
+        /* Надёжное раскрытие футера бизнес-страницы через класс.
+           CSS :hover остаётся резервным механизмом. */
+        (function () {
+            const footer = document.querySelector('.business-footer');
+            if (!footer) return;
+
+            const openFooter = () => footer.classList.add('is-open');
+            const closeFooter = (event) => {
+                if (!footer.contains(event.relatedTarget)) {
+                    footer.classList.remove('is-open');
+                }
+            };
+
+            footer.addEventListener('mouseenter', openFooter);
+            footer.addEventListener('mouseleave', closeFooter);
+            footer.addEventListener('focusin', openFooter);
+            footer.addEventListener('focusout', (event) => {
+                if (!footer.contains(event.relatedTarget)) {
+                    footer.classList.remove('is-open');
+                }
+            });
+        })();
+    </script>
+
+</body>
+</html>
