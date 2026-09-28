@@ -1842,7 +1842,7 @@ const ecoPoints = [
 
 
         // ========== ПУНКТЫ ПРИЁМА ВТОРСЫРЬЯ (id 131–181) ==========
-    {
+    /*{
         id: 131,
         name: "Воронежвторма (Сакко и Ванцетти)",
         address: "ул. Сакко и Ванцетти, 54в, Воронеж",
@@ -1856,7 +1856,7 @@ const ecoPoints = [
         contacts: "+7 (4732) 21-80-70",
         website: "",
         recyclingTypes: ["paper", "plastic", "glass"]
-    },
+    },*/
     {
         id: 132,
         name: "Воронежвторма (Пеше-Стрелецкая)",
@@ -1902,7 +1902,7 @@ const ecoPoints = [
         website: "",
         recyclingTypes: ["paper", "plastic", "glass"]
     },
-    {
+    /*{
         id: 135,
         name: "Воронежвторма (Донбасская)",
         address: "ул. Донбасская, 10 (ост. «Площадь Заставы»), Воронеж",
@@ -1916,7 +1916,7 @@ const ecoPoints = [
         contacts: "+7 (4732) 21-80-70",
         website: "",
         recyclingTypes: ["paper", "plastic", "glass"]
-    },
+    },*/
     {
         id: 136,
         name: "Воронежвторма (Ф. Энгельса)",
@@ -1932,7 +1932,7 @@ const ecoPoints = [
         website: "",
         recyclingTypes: ["paper", "plastic", "glass"]
     },
-    {
+    /*{
         id: 137,
         name: "Воронежвторма (Колесниченко)",
         address: "ул. Колесниченко, 67, Воронеж",
@@ -1946,8 +1946,8 @@ const ecoPoints = [
         contacts: "+7 (4732) 21-80-70",
         website: "",
         recyclingTypes: ["paper", "plastic", "glass"]
-    },
-    {
+    },*/
+    /*{
         id: 138,
         name: "Воронежвторма (Хользунова, 105-А)",
         address: "ул. Хользунова, 105-А (Птичий рынок), Воронеж",
@@ -1961,7 +1961,7 @@ const ecoPoints = [
         contacts: "+7 (4732) 21-80-70",
         website: "",
         recyclingTypes: ["paper", "plastic", "glass"]
-    },
+    },*/
     {
         id: 139,
         name: "Воронежвторма (Хользунова, 40-Е)",
@@ -2022,7 +2022,7 @@ const ecoPoints = [
         website: "",
         recyclingTypes: ["paper", "plastic", "glass"]
     },
-    {
+    /*{
         id: 143,
         name: "Воронежвторма (Владимира Невского, 55)",
         address: "ул. Владимира Невского, 55 (во дворе), Воронеж",
@@ -2036,7 +2036,7 @@ const ecoPoints = [
         contacts: "+7 (4732) 21-80-70",
         website: "",
         recyclingTypes: ["paper", "plastic", "glass"]
-    },
+    },*/
     {
         id: 144,
         name: "Воронежвторма (наб. Авиастроителей, 22)",
@@ -2067,7 +2067,7 @@ const ecoPoints = [
         website: "",
         recyclingTypes: ["paper", "plastic", "glass"]
     },
-    {
+    /*{
         id: 146,
         name: "Воронежвторма (Ростовская, 2)",
         address: "ул. Ростовская, 2 (авторынок), Воронеж",
@@ -2081,7 +2081,7 @@ const ecoPoints = [
         contacts: "+7 (4732) 21-80-70",
         website: "",
         recyclingTypes: ["paper", "plastic", "glass"]
-    },
+    },*/
     {
         id: 147,
         name: "Воронежвторма (25 Января, 6-В)",
@@ -2112,7 +2112,7 @@ const ecoPoints = [
         website: "",
         recyclingTypes: ["paper", "plastic", "glass"]
     },
-    {
+    /*{
         id: 149,
         name: "Седьмой лепесток (Южно-Моравская)",
         address: "ул. Южно-Моравская, 21А, Воронеж",
@@ -2246,7 +2246,7 @@ const ecoPoints = [
         contacts: "+7 (960) 135-17-00",
         website: "",
         recyclingTypes: []
-    },
+    },*/
     {
         id: 158,
         name: "Вторсырье-Плюс",
@@ -2262,7 +2262,7 @@ const ecoPoints = [
         website: "http://ooovts.com/",
         recyclingTypes: ["paper", "plastic", "metal"]
     },
-    {
+    /*{
         id: 159,
         name: "Картон Черноземье",
         address: "ул. Транспортная, 1е, Воронеж",
@@ -2276,15 +2276,15 @@ const ecoPoints = [
         contacts: "+7 (473) 246-76-67",
         website: "",
         recyclingTypes: ["paper"]
-    },
+    },*/
     {
         id: 160,
         name: "Киво-Маркет",
-        address: "ул. Екатерины Зеленко, 20, Воронеж",
-        lat: 51.701909,
-        lng: 39.105218,
+        address: "ул. Тихий Дон, 48Г, Воронеж",
+        lat: 51.694736,
+        lng: 39.055047,
         type: "recycling",
-        district: "Коминтерновский",
+        district: "Советский",
         hours: "Пн–Пт 08:00–17:00, Сб 08:00–14:00",
         hoursType: "regular",
         description: "Макулатура, полиэтилен, вторсырьё",
@@ -2292,7 +2292,7 @@ const ecoPoints = [
         website: "kivomarket.ru",
         recyclingTypes: ["paper", "plastic"]
     },
-    {
+    /*{
         id: 161,
         name: "Разноинторг",
         address: "ул. Ростовская, 56, Воронеж",
@@ -2306,23 +2306,23 @@ const ecoPoints = [
         contacts: "8-900-963-83-25",
         website: "",
         recyclingTypes: ["paper", "plastic"]
-    },
+    },*/
     {
         id: 162,
         name: "Воронеж Картон",
-        address: "ул. Ростовская, 45, помещение 1, Воронеж",
-        lat: 51.602763,
-        lng: 39.251329,
+        address: "ул. Ростовская, 45К, помещение 1, Воронеж",
+        lat: 51.607664,
+        lng: 39.253257,
         type: "recycling",
         district: "Левобережный",
-        hours: "по телефону",
+        hours: "Пн-Пт 08:00-17:00, Сб 08:00-12:00",
         hoursType: "regular",
         description: "Макулатура, картон, полиэтилен",
         contacts: "244-54-89",
         website: "",
         recyclingTypes: ["paper", "plastic"]
     },
-    {
+    /*{
         id: 163,
         name: "ЭкоСити",
         address: "ул. Ломоносова, 98Б, Воронеж",
@@ -2336,8 +2336,8 @@ const ecoPoints = [
         contacts: "8-919-249-99-98",
         website: "",
         recyclingTypes: ["paper", "plastic"]
-    },
-    {
+    },*/
+    /*{
         id: 164,
         name: "Арго-ЭК",
         address: "пер. Электронный, 17, офис 10, Воронеж",
@@ -2351,8 +2351,8 @@ const ecoPoints = [
         contacts: "(473) 278-41-66",
         website: "",
         recyclingTypes: ["plastic"]
-    },
-    {
+    },*/
+    /*{
         id: 165,
         name: "Славянское Наследие",
         address: "ул. Ростовская, 78, офис 82, Воронеж",
@@ -2366,8 +2366,8 @@ const ecoPoints = [
         contacts: "8-920-222-00-22",
         website: "",
         recyclingTypes: ["plastic"]
-    },
-    {
+    },*/
+    /*{
         id: 166,
         name: "Эко-Парк",
         address: "ул. Холмистая, 56, корпус Б, Воронеж",
@@ -2381,7 +2381,7 @@ const ecoPoints = [
         contacts: "228-53-54",
         website: "",
         recyclingTypes: []
-    },
+    },*/
     {
         id: 167,
         name: "М.Видео (Галерея Чижова)",
@@ -2412,7 +2412,7 @@ const ecoPoints = [
         website: "",
         recyclingTypes: ["battery"]
     },
-    {
+    /*{
         id: 169,
         name: "36 Колес",
         address: "пр-т Патриотов, 65З, Воронеж",
@@ -2426,7 +2426,7 @@ const ecoPoints = [
         contacts: "",
         website: "",
         recyclingTypes: ["battery", "electronics"]
-    },
+    },*/
     {
         id: 170,
         name: "ЭкоЛайнер",
@@ -2472,7 +2472,7 @@ const ecoPoints = [
         website: "",
         recyclingTypes: ["battery"]
     },
-    {
+    /*{
         id: 173,
         name: "Эколан (старый город)",
         address: "ул. 9 Января, 55, Воронеж",
@@ -2486,7 +2486,7 @@ const ecoPoints = [
         contacts: "",
         website: "",
         recyclingTypes: ["paper", "plastic", "battery"]
-    },
+    },*/
     {
         id: 174,
         name: "ПЭТ-Пласт",
@@ -2517,7 +2517,7 @@ const ecoPoints = [
         website: "",
         recyclingTypes: ["metal", "paper"]
     },
-    {
+    /*{
         id: 176,
         name: "Акрон Скрап (Витрука)",
         address: "ул. Витрука, 3, Воронеж",
@@ -2531,7 +2531,7 @@ const ecoPoints = [
         contacts: "",
         website: "",
         recyclingTypes: ["metal"]
-    },
+    },*/
     {
         id: 177,
         name: "Акрон Скрап (Выборгская)",
@@ -2547,7 +2547,7 @@ const ecoPoints = [
         website: "",
         recyclingTypes: ["metal", "paper"]
     },
-    {
+    /*{
         id: 178,
         name: "Акрон Скрап (Ленинский пр-т)",
         address: "Ленинский пр-т, 174/5, Воронеж",
@@ -2561,7 +2561,7 @@ const ecoPoints = [
         contacts: "8 (800) 555-44-43",
         website: "",
         recyclingTypes: ["metal", "battery", "electronics"]
-    },
+    },*/
     {
         id: 179,
         name: "Акрон Скрап (Майская)",
@@ -2656,7 +2656,7 @@ const ecoPoints = [
         website: "",
         recyclingTypes: []
     },
-    {
+    /*{
         id: 183,
         name: "Бутик Добра",
         address: "ул. Карла Маркса, 116А (1 этаж), Воронеж",
@@ -2670,10 +2670,10 @@ const ecoPoints = [
         contacts: "+7 (473) 213-34-75, +7 (919) 236-82-21",
         website: "",
         recyclingTypes: []
-    },
+    },*/
     {
         id: 184,
-        name: "Секонд-хенд",
+        name: "Секонд-хенд Pro Бренд",
         address: "ул. Моисеева, 42 (1 этаж), Воронеж",
         lat: 51.651416,
         lng: 39.177263,
@@ -2686,7 +2686,7 @@ const ecoPoints = [
         website: "",
         recyclingTypes: []
     },
-    {
+    /*{
         id: 185,
         name: "Секонд-хенд Микс",
         address: "ул. Пушкинская, 4 (цокольный этаж), Воронеж",
@@ -2700,7 +2700,7 @@ const ecoPoints = [
         contacts: "+7 (905) 644-87-13",
         website: "",
         recyclingTypes: []
-    },
+    },*/
     {
         id: 186,
         name: "Планета Секонд-Хенд",
@@ -2716,7 +2716,7 @@ const ecoPoints = [
         website: "",
         recyclingTypes: []
     },
-    {
+    /*{
         id: 187,
         name: "Секонд-хенд",
         address: "ул. Федора Тютчева, 95е, Воронеж",
@@ -2730,22 +2730,22 @@ const ecoPoints = [
         contacts: "",
         website: "",
         recyclingTypes: []
-    }
-    // {
-    //     id: 188,
-    //     name: "Всячина",
-    //     address: "ул. Волго-Донская, 4, Воронеж",
-    //     lat: 51.614296,
-    //     lng: 39.248796,
-    //     type: "shop",  // было "secondhand"
-    //     district: "Левобережный",
-    //     hours: "Пн–Пт 11:00–19:00, Сб–Вс 10:00–16:00",
-    //     hoursType: "regular",
-    //     description: "Благотворительный магазин / секонд-хенд",
-    //     contacts: "+7 (951) 855-10-16",
-    //     website: "",
-    //     recyclingTypes: []
-    // }
+    }*/
+    /*{
+        id: 188,
+        name: "Всячина",
+        address: "ул. Волго-Донская, 4, Воронеж",
+        lat: 51.614296,
+        lng: 39.248796,
+        type: "shop",  // было "secondhand"
+        district: "Левобережный",
+        hours: "Пн–Пт 11:00–19:00, Сб–Вс 10:00–16:00",
+        hoursType: "regular",
+        description: "Благотворительный магазин / секонд-хенд",
+        contacts: "+7 (951) 855-10-16",
+        website: "",
+        recyclingTypes: []
+    }*/
 ];
 
 const typeColors = {
