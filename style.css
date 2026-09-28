@@ -863,3 +863,207 @@ body {
         font-size: 20px;
     }
 }
+
+/* =========================================================
+   ПАРТНЁРСКИЙ РАЗДЕЛ
+   ========================================================= */
+
+/* Анимация карточек секции «Как начать сотрудничество» — такая же,
+   как у карточек в разделах выше. */
+.business-step {
+    transition: transform 0.25s var(--ease-squircle),
+                box-shadow 0.25s var(--ease-squircle);
+}
+
+.business-step:hover {
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-sm);
+}
+
+/*
+   Раскрытие футера на странице business.html.
+   Стили намеренно ограничены классом .business-footer,
+   поэтому футер на index.html остаётся без изменений.
+*/
+.business-footer {
+    margin-top: auto;
+    height: 56px;
+    max-height: 56px;
+    overflow: hidden;
+    position: relative;
+    z-index: 30;
+    transition: height 0.45s var(--ease-squircle),
+                max-height 0.45s var(--ease-squircle),
+                box-shadow 0.45s var(--ease-squircle);
+}
+
+.business-footer:hover,
+.business-footer:focus-within {
+    height: 400px;
+    max-height: 400px;
+    box-shadow: 0 -8px 30px rgba(0, 0, 0, 0.08);
+}
+
+.business-footer .footer-expanded {
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+    transform: translateY(10px);
+    transition: opacity 0.25s ease,
+                transform 0.3s var(--ease-squircle),
+                visibility 0s linear 0.3s;
+    padding: 0 32px 16px;
+}
+
+.business-footer:hover .footer-expanded,
+.business-footer:focus-within .footer-expanded {
+    opacity: 1;
+    visibility: visible;
+    pointer-events: auto;
+    transform: translateY(0);
+    padding: 24px 32px 16px;
+    transition: opacity 0.3s ease 0.08s,
+                transform 0.35s var(--ease-squircle) 0.08s,
+                visibility 0s linear 0s;
+}
+
+.business-footer:hover .footer-collapsed,
+.business-footer:focus-within .footer-collapsed {
+    opacity: 0;
+    pointer-events: none;
+}
+
+/*
+   В свёрнутом и раскрытом состояниях используется одна и та же
+   ширина рабочей области и четыре одинаковых колонки. Благодаря этому
+   расстояние между четырьмя заголовками остаётся одинаковым.
+*/
+@media (min-width: 769px) {
+    .business-footer .footer-collapsed {
+        width: min(1200px, calc(100% - 64px));
+        margin: 0 auto;
+        display: grid;
+        grid-template-columns: repeat(4, minmax(0, 1fr));
+        justify-content: initial;
+        padding: 16px 0;
+    }
+
+    .business-footer .footer-expanded {
+        padding-left: 32px;
+        padding-right: 32px;
+    }
+
+    .business-footer .footer-columns {
+        display: grid;
+        grid-template-columns: repeat(4, minmax(0, 1fr));
+        gap: 0;
+    }
+
+    .business-footer .footer-col {
+        min-width: 0;
+    }
+}
+
+/* Для отдельной страницы body должен прокручиваться. */
+body.business-body {
+    overflow: auto;
+    background: #F1F4F8;
+}
+
+/* =========================
+   BUSINESS PAGE ADAPTIVITY
+   ========================= */
+
+@media (max-width: 900px) {
+    .business-grid,
+    .business-steps {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+
+    .business-hero {
+        padding: 36px 28px;
+    }
+}
+
+@media (max-width: 768px) {
+    .business-footer:hover,
+    .business-footer:focus-within {
+        height: 460px;
+        max-height: 460px;
+    }
+
+    .business-footer .footer-collapsed {
+        width: 100%;
+        display: grid;
+        grid-template-columns: repeat(4, minmax(0, 1fr));
+        justify-content: initial;
+    }
+
+    .business-footer .footer-columns {
+        display: flex;
+        flex-direction: column;
+        gap: 16px;
+    }
+}
+
+@media (max-width: 600px) {
+    .business-page .business-header {
+        padding: 8px 12px;
+    }
+
+    .business-brand img:first-child,
+    .business-brand img:last-child {
+        height: 32px;
+    }
+
+    .business-header-inner {
+        gap: 12px;
+    }
+
+    .business-back {
+        font-size: 12px;
+    }
+
+    .business-main {
+        width: min(100% - 16px, 1100px);
+        padding: 24px 0 40px;
+    }
+
+    .business-hero,
+    .business-section {
+        padding: 24px 18px;
+        border-radius: 16px;
+    }
+
+    .business-grid,
+    .business-steps {
+        grid-template-columns: 1fr;
+    }
+
+    .business-hero p {
+        font-size: 15px;
+    }
+
+    .business-contact-links {
+        flex-direction: column;
+        align-items: stretch;
+    }
+
+    .business-contact-link {
+        justify-content: center;
+    }
+
+    .business-footer:hover,
+    .business-footer:focus-within {
+        height: 520px;
+        max-height: 520px;
+    }
+}
+
+@media (max-width: 480px) {
+    .business-footer:hover,
+    .business-footer:focus-within {
+        height: 520px;
+        max-height: 520px;
+    }
+}
